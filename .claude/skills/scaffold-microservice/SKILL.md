@@ -31,11 +31,11 @@ backend/services/<service>/
   src/main/resources/{application.yml, db/migration/}
   src/test/java/com/jobstar/<pkg>/
 ```
-Empty folders get a `.gitkeep`. Create `security/ config/ exception/ mapper/ scheduler/` only if the user asks.
+Never create `.gitkeep` or any placeholder file in empty folders. Create `security/ config/ exception/ mapper/ scheduler/` only if the user asks.
 
 ## Steps
 1. Resolve `<pkg>`, `<port>`, `<db>`, `<Name>` from the table; stop if the service is unknown or already exists.
-2. `mkdir -p` the tree and `touch .gitkeep` in empty folders (one short Bash call).
+2. `mkdir -p` the whole tree in one short Bash call; leave empty folders empty.
 3. Write `pom.xml`, `Dockerfile`, `application.yml` and the main class from the templates below.
 4. Add `<module>services/<service></module>` to `backend/pom.xml` (after the last module).
 5. From `backend/` run `mvn -q -DskipTests package`; confirm `services/<service>/target/<service>-0.0.1-SNAPSHOT.jar` exists.
@@ -182,7 +182,7 @@ public class <Name>ServiceApplication {
 ## Example
 **Input:** `/scaffold-microservice job-service`
 **Output:**
-- Created `backend/services/job-service/` (package `com.jobstar.job`, port 8082, DB `job_db`): `pom.xml`, `Dockerfile`, `application.yml`, `JobServiceApplication.java`, layer folders with `.gitkeep`.
+- Created `backend/services/job-service/` (package `com.jobstar.job`, port 8082, DB `job_db`): `pom.xml`, `Dockerfile`, `application.yml`, `JobServiceApplication.java`, empty layer folders.
 - Added module `services/job-service` to `backend/pom.xml`.
 - `mvn -q -DskipTests package`: OK, `job-service-0.0.1-SNAPSHOT.jar` built.
 - Open: first Flyway migration and entities.
