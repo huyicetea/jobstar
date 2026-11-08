@@ -1,0 +1,6 @@
+com\jobstar\common\error\GlobalExceptionHandler.class
+com\jobstar\common\error\ApiException.class
+com\jobstar\common\error\ErrorCode.class
+com\jobstar\common\event\EventEnvelope.class
+com\jobstar\common\error\ErrorResponse.class
+com\jobstar\common\event\OutboxEvent.class
